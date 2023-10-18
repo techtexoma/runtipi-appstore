@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
   "name": "Tube Archivist",
-  "available": true,
+  "available": false,
   "exposable": true,
   "port": 8120,
   "id": "tubearchivist",

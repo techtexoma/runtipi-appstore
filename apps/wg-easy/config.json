@@ -1,13 +1,11 @@
 {
   "$schema": "../schema.json",
   "name": "Wireguard",
-  "available": true,
+  "available": false,
   "exposable": true,
   "port": 8082,
   "requirements": {
-    "ports": [
-      51820
-    ]
+    "ports": [51820]
   },
   "id": "wg-easy",
   "tipi_version": 6,

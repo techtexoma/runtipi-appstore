@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
   "name": "Syncthing",
-  "available": true,
+  "available": false,
   "exposable": true,
   "port": 8090,
   "id": "syncthing",

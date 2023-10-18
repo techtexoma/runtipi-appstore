@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
   "name": "Tailscale",
-  "available": true,
+  "available": false,
   "port": 8093,
   "id": "tailscale",
   "tipi_version": 24,

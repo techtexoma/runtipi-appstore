@@ -1,13 +1,11 @@
 {
   "$schema": "../schema.json",
   "name": "Transmission",
-  "available": true,
+  "available": false,
   "exposable": true,
   "port": 8089,
   "requirements": {
-    "ports": [
-      51413
-    ]
+    "ports": [51413]
   },
   "id": "transmission",
   "tipi_version": 9,

@@ -2,7 +2,7 @@
   "$schema": "../schema.json",
   "name": "LibrePhotos",
   "port": 8132,
-  "available": true,
+  "available": false,
   "exposable": true,
   "id": "librephotos",
   "tipi_version": 14,

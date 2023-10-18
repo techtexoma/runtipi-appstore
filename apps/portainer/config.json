@@ -2,7 +2,7 @@
   "$schema": "../schema.json",
   "name": "Portainer",
   "port": 9443,
-  "available": true,
+  "available": false,
   "exposable": true,
   "https": true,
   "id": "portainer",

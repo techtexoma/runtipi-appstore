@@ -1,17 +1,15 @@
 {
   "$schema": "../schema.json",
   "name": "Bitcoin",
-  "available": true,
-  "exposable": false,
+  "available": false,
+  "exposable": true,
   "no_gui": true,
   "port": 8333,
   "id": "bitcoind",
   "description": "Bitcoin core node",
   "tipi_version": 1,
   "version": "26.0",
-  "categories": [
-    "finance"
-  ],
+  "categories": ["finance"],
   "short_desc": "Bitcoin core node",
   "author": "Bitcoin developers",
   "source": "https://github.com/lncm/docker-bitcoind",
@@ -55,8 +53,5 @@
       "env_variable": "BITCOIND_MAXPEERS"
     }
   ],
-  "supported_architectures": [
-    "amd64",
-    "arm64"
-  ]
+  "supported_architectures": ["amd64", "arm64"]
 }

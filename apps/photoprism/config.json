@@ -2,7 +2,7 @@
   "$schema": "../schema.json",
   "name": "PhotoPrism",
   "port": 8110,
-  "available": true,
+  "available": false,
   "exposable": true,
   "id": "photoprism",
   "tipi_version": 4,

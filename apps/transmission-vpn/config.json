@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
   "name": "Transmission (VPN)",
-  "available": true,
+  "available": false,
   "exposable": true,
   "port": 9091,
   "id": "transmission-vpn",
