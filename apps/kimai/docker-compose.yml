@@ -49,7 +49,7 @@ services:
 
   kimai:
     container_name: kimai
-    image: kimai/kimai2:fpm-2.1.0-prod
+    image: kimai/kimai2:fpm-2.18.0-prod
     environment:
       - ADMINMAIL=${KIMAI_ADMINMAIL}
       - ADMINPASS=${KIMAI_ADMINPASS}
