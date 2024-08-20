@@ -1,0 +1,67 @@
+{
+  "$schema": "../schema.json",
+  "name": "MemGPT",
+  "available": true,
+  "exposable": true,
+  "port": 8283,
+  "id": "memgpt",
+  "tipi_version": 21,
+  "version": "v0.3.21",
+  "description": "MemGPT is a self-hosted AI text generation service",
+  "short_desc": "MemGPT is a self-hosted AI text generation service",
+  "author": "Charles Packer",
+  "categories": ["data"],
+  "website": "https://memgpt.ai/",
+  "source": "https://github.com/cpacker/MemGPT",
+  "form_fields": [
+    {
+      "type": "random",
+      "label": "Database password",
+      "required": false,
+      "min": 30,
+      "max": 30,
+      "env_variable": "MEMGPT_PG_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Postgres Host",
+      "placeholder": "memgpt_db",
+      "required": false,
+      "env_variable": "MEMGPT_PG_HOST"
+    },
+    {
+      "type": "text",
+      "label": "Postgres DB Name",
+      "placeholder": "memgpt",
+      "required": false,
+      "env_variable": "MEMGPT_PG_DB"
+    },
+    {
+      "type": "text",
+      "label": "Postgres URL",
+      "placeholder": "memgpt",
+      "required": false,
+      "env_variable": "MEMGPT_PG_URL"
+    },
+    {
+      "type": "text",
+      "label": "Postgres User",
+      "placeholder": "memgpt",
+      "required": false,
+      "env_variable": "MEMGPT_PG_USER"
+    },
+    {
+      "type": "password",
+      "label": "Openai API Key",
+      "required": false,
+      "env_variable": "OPENAI_API_KEY"
+    },
+    {
+      "type": "password",
+      "label": "MemGPT Server Password",
+      "required": false,
+      "env_variable": "MEMGPT_SERVER_PASS"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"]
+}

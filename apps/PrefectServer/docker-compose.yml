@@ -1,0 +1,108 @@
+version: "3.9"
+services:
+
+  ### Prefect Database
+  database:
+    image: postgres:16.4-alpine3.20
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${PREFECT_POSTGRES_PASSWORD}
+      - POSTGRES_DB=prefect
+    expose:
+      - 5432
+    volumes: 
+      - "${APP_DATA_DIR}/db:/var/lib/postgresql/data"
+    profiles: ["server"]
+  
+  ### MinIO for flow storage
+  minio:
+    image: minio/minio:latest
+    entrypoint: ["minio", "server", "--address", "0.0.0.0:9000", "--console-address", "0.0.0.0:9001", "/data"]
+    volumes:
+      - "minio:/data"
+    ports:
+      - 9000:9000
+      - 9001:9001
+    profiles: ["minio"]
+
+  ### Prefect Server API and UI
+  server:
+    image: prefecthq/prefect:2.20.2-python3.11
+    restart: always
+    volumes:
+      - "${APP_DATA_DIR}/prefect:/root/.prefect"
+    entrypoint: ["/opt/prefect/entrypoint.sh", "prefect", "server", "start"]
+    environment:
+      - PREFECT_UI_URL=${APP_DOMAIN} #:4200/api
+      - PREFECT_API_URL=${APP_DOMAIN} #:4200/api
+      # If you want to access Prefect Server UI from anywhere other than the Docker host machine, you will need to change
+      # PREFECT_UI_URL and PREFECT_API_URL to match the external hostname/IP of the host machine. For example:
+      #- PREFECT_UI_URL=http://external-ip:4200/api
+      #- PREFECT_API_URL=http://external-ip:4200/api
+      - PREFECT_SERVER_API_HOST=0.0.0.0
+      - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://postgres:${PREFECT_POSTGRES_PASSWORD}@database:5432/prefect
+      # Uncomment the following line if you want to use the 'S3 Bucket' storage block instead of the older 'S3' storage
+      # - EXTRA_PIP_PACKAGES=prefect-aws
+    ports:
+      - 4200:4200
+    depends_on:
+      - database
+    profiles: ["server"]
+    labels:
+      # Main
+      traefik.enable: true
+      traefik.http.middlewares.prefect-web-redirect.redirectscheme.scheme: https
+      traefik.http.services.prefect.loadbalancer.server.port: 4200
+      # Web
+      traefik.http.routers.prefect-insecure.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.prefect-insecure.entrypoints: web
+      traefik.http.routers.prefect-insecure.service: prefect
+      traefik.http.routers.prefect-insecure.middlewares: prefect-web-redirect
+      # Websecure
+      traefik.http.routers.prefect.rule: Host(`${APP_DOMAIN}`)
+      traefik.http.routers.prefect.entrypoints: websecure
+      traefik.http.routers.prefect.service: prefect
+      traefik.http.routers.prefect.tls.certresolver: myresolver
+      # Local domain
+      traefik.http.routers.prefect-local-insecure.rule: Host(`prefect.${LOCAL_DOMAIN}`)
+      traefik.http.routers.prefect-local-insecure.entrypoints: web
+      traefik.http.routers.prefect-local-insecure.service: prefect
+      traefik.http.routers.prefect-local-insecure.middlewares: prefect-web-redirect
+      # Local domain secure
+      traefik.http.routers.prefect-local.rule: Host(`prefect.${LOCAL_DOMAIN}`)
+      traefik.http.routers.prefect-local.entrypoints: websecure
+      traefik.http.routers.prefect-local.service: prefect
+      traefik.http.routers.prefect-local.tls: true
+
+  ## Prefect Agent
+  agent:
+    image: prefecthq/prefect:2.20.2-python3.11
+    restart: always
+    entrypoint: ["/opt/prefect/entrypoint.sh", "prefect", "agent", "start", "-q", "${WORK_QUEUE_NAME}"]
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+#       Use PREFECT_API_KEY if connecting the agent to Prefect Cloud
+#     - PREFECT_API_KEY=YOUR_API_KEY
+    profiles: ["agent"]
+
+  ### Prefect CLI
+  cli:
+    image: prefecthq/prefect:2.20.2-python3.11
+    entrypoint: "bash"
+    working_dir: "/root/flows"
+    volumes:
+      - "${APP_DATA_DIR}/flows:/root/flows"
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+#       Use PREFECT_API_KEY to use the CLI to interact with Prefect Cloud
+#     - PREFECT_API_KEY=YOUR_API_KEY
+    profiles: ["cli"]
+      
+volumes:
+  prefect:
+  db:
+  minio:
+networks:
+  default:
+    name: tipi_main_network

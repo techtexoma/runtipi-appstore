@@ -1,0 +1,36 @@
+{
+  "name": "Prefect Server",
+  "available": true,
+  "port": 8605,
+  "exposable": true,
+  "id": "prefect",
+  "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
+  "tipi_version": 27,
+  "version": "2.20.2",
+  "categories": ["automation"],
+  "short_desc": "Workflows as code",
+  "author": "Prefect",
+  "source": "https://github.com/PrefectHQ/prefect",
+  "website": "https://prefect.io",
+  "form_fields": [
+    {
+      "type": "text",
+      "label": "Postgres Password",
+      "placeholder": "prefect_pg_pw",
+      "required": true,
+      "env_variable": "PREFECT_POSTGRES_PASSWORD"
+    },
+    {
+      "type": "text",
+      "label": "Work Queue Name",
+      "placeholder": "prefect_work_queue",
+      "required": true,
+      "env_variable": "WORK_QUEUE_NAME"
+    }
+  ],
+  "supported_architectures": ["arm64", "amd64"]
+}
+
+
+
+
