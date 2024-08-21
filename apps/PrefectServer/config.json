@@ -1,11 +1,12 @@
 {
+  "$schema": "../schema.json",
   "name": "Prefect Server",
   "available": true,
-  "port": 8605,
+  "port": 4200,
   "exposable": true,
   "id": "prefect",
   "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
-  "tipi_version": 27,
+  "tipi_version": 1,
   "version": "2.20.2",
   "categories": ["automation"],
   "short_desc": "Workflows as code",
@@ -16,19 +17,21 @@
     {
       "type": "text",
       "label": "Postgres Password",
-      "placeholder": "prefect_pg_pw",
+      "placeholder": "Random long password",
       "required": true,
       "env_variable": "PREFECT_POSTGRES_PASSWORD"
     },
     {
       "type": "text",
       "label": "Work Queue Name",
-      "placeholder": "prefect_work_queue",
+      "placeholder": "My_Aweome_Work_Flow",
       "required": true,
       "env_variable": "WORK_QUEUE_NAME"
     }
   ],
-  "supported_architectures": ["arm64", "amd64"]
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1691943801422,
+  "updated_at": 1723566284000
 }
 
 
