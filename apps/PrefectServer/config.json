@@ -19,13 +19,15 @@
       "label": "Postgres Password",
       "placeholder": "Random long password",
       "required": true,
+      "hint": "Enter a strong password for your PostgreSQL database.",
       "env_variable": "PREFECT_POSTGRES_PASSWORD"
     },
     {
       "type": "text",
       "label": "Work Queue Name",
-      "placeholder": "My_Aweome_Work_Flow",
+      "placeholder": "My_Awesome_Work_Flow",
       "required": true,
+      "hint": "Specify the name of the work queue for Prefect agents.",
       "env_variable": "WORK_QUEUE_NAME"
     }
   ],
@@ -33,7 +35,3 @@
   "created_at": 1691943801422,
   "updated_at": 1723566284000
 }
-
-
-
-
