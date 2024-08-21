@@ -15,11 +15,9 @@
   "website": "https://prefect.io",
   "form_fields": [
     {
-      "type": "text",
+      "type": "random",
       "label": "Postgres Password",
-      "placeholder": "Random long password",
-      "required": true,
-      "hint": "Enter a strong password for your PostgreSQL database.",
+      "min": 32,
       "env_variable": "PREFECT_POSTGRES_PASSWORD"
     },
     {
@@ -27,7 +25,6 @@
       "label": "Work Queue Name",
       "placeholder": "My_Awesome_Work_Flow",
       "required": true,
-      "hint": "Specify the name of the work queue for Prefect agents.",
       "env_variable": "WORK_QUEUE_NAME"
     }
   ],
