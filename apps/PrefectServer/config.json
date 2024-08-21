@@ -1,10 +1,10 @@
 {
   "$schema": "../schema.json",
-  "name": "Prefect Server",
+  "name": "Prefect-stack",
   "available": true,
   "port": 4200,
   "exposable": true,
-  "id": "prefect",
+  "id": "prefect-stack",
   "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
   "tipi_version": 1,
   "version": "2.20.2",
@@ -29,6 +29,6 @@
     }
   ],
   "supported_architectures": ["arm64", "amd64"],
-  "created_at": 1691943801422,
-  "updated_at": 1723566284000
+  "created_at": 1724241600000,
+  "updated_at": 1724199682939
 }
