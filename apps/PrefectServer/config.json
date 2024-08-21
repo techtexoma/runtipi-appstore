@@ -1,15 +1,15 @@
 {
   "$schema": "../schema.json",
-  "name": "Prefect-stack",
+  "name": "Prefect",
+  "id": "prefect",
   "available": true,
   "port": 4200,
   "exposable": true,
-  "id": "prefect-stack",
-  "description": "Prefect is a workflow orchestration framework for building resilient data pipelines in Python.",
-  "tipi_version": 1,
+  "description": "Prefect is a modern workflow orchestration framework for building, scheduling, and monitoring robust data pipelines. It allows you to define your workflows as code, handle complex dependencies, and manage distributed task execution with ease.",
+  "tipi_version": 2,
   "version": "2.20.2",
-  "categories": ["automation"],
-  "short_desc": "Workflows as code",
+  "categories": ["automation", "development", "data"],
+  "short_desc": "Workflow orchestration for data pipelines",
   "author": "Prefect",
   "source": "https://github.com/PrefectHQ/prefect",
   "website": "https://prefect.io",
@@ -23,12 +23,12 @@
     {
       "type": "text",
       "label": "Work Queue Name",
-      "placeholder": "My_Awesome_Work_Flow",
+      "placeholder": "default",
       "required": true,
       "env_variable": "WORK_QUEUE_NAME"
     }
   ],
   "supported_architectures": ["arm64", "amd64"],
   "created_at": 1724241600000,
-  "updated_at": 1724199682939
+  "updated_at": 1724241600000
 }
